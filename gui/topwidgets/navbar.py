@@ -10,11 +10,11 @@ class NavBar(tkinter.Frame):
 
         # creating logo label
         try:
-            logo_img = ImageTk.PhotoImage(Image.open('gui/img/logo.png').resize((50, 50), Image.ANTIALIAS))
-        except:
-            pass
+            self.logo_img = ImageTk.PhotoImage(Image.open(self.app.logo).resize((50, 50), Image.ANTIALIAS))
+        except Exception as e:
+            print(e)
         else:
-            self.logo_label = tkinter.Label(self, image=logo_img, bd=0, relief='flat', bg='#403E39')
+            self.logo_label = tkinter.Label(self, image=self.logo_img, bd=0, relief='flat', bg='#403E39')
             self.logo_label.pack(side='left', padx=5, pady=5)
 
         # creating label

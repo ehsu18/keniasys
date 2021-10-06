@@ -28,6 +28,9 @@ class App(tkinter.Frame):
         self.root = tkinter.Tk()
         self.configure_root()
 
+        # Variables
+        self.logo = 'gui/img/logo.png'
+
         # initializing in tk and making main frame
         tkinter.Frame.__init__(self, self.root)
         self.configure_self()
@@ -41,7 +44,7 @@ class App(tkinter.Frame):
         # Making main widgets
         # self.menubar = MenuBar(self)
         self.navbar = NavBar(self, bg='#403E39')
-        self.mainview = MainView(self, bg='#00F') # this don't should be visible
+        self.mainview = MainView(self, bg='#00F') # this should not be visible
         self.statusbar = StatusBar(self, bg='#DDD')
 
         self.pack(fill='both', expand=1)
