@@ -48,4 +48,4 @@ class BaseTab(tkinter.Frame):
     def __init__(self, master, *args, **kwargs):
         tkinter.Frame.__init__(self, master, *args, **kwargs)
         self.app = master.app
-        self.products = self.app.products
+        # self.products = self.app.products

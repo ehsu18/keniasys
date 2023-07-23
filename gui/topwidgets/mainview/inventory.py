@@ -181,7 +181,6 @@ class Inventory(basetab.BaseTab):
                 self.details_notes_var.set(article[6])
                 self.update_price()
 
-
     def insert_into_list(self, *args):
         self.list.listbox.delete(0, 'end')
         for i in args:

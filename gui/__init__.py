@@ -1,4 +1,4 @@
-from .topwidgets import statusbar, menu, navbar, mainview
+from .topwidgets import statusbar, menu, navbar, mainview, login
 
 
 class MenuBar(menu.Menu):
@@ -15,3 +15,7 @@ class MainView(mainview.MainView):
 
 class StatusBar(statusbar.Widget):
     pass
+
+class Login(login.Login):
+	pass
+	

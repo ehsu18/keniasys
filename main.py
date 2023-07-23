@@ -3,15 +3,11 @@
 # Main file of the inventory manager
 # begin at feb 02 of 2021
 
-try:
-    import tkinter
-    from gui import *
-    from db import *
-except ModuleNotFoundError as e:
-    print(f"Can't initialize, missing module: {e}")
-    raise
-except Exception:
-    raise
+import tkinter
+from tkinter import messagebox
+from gui import *
+from db import *
+from PIL import ImageTk, Image
 
 
 class App(tkinter.Frame):
@@ -24,12 +20,18 @@ class App(tkinter.Frame):
 
     def __init__(self):
         """Making all the app before mainloop"""
-        # Tk window
-        self.root = tkinter.Tk()
-        self.configure_root()
-
+        
         # Variables
         self.logo = 'gui/img/logo.png'
+        self.icon = 'gui/img/logo.ico'
+        self.user = (-1, 'debugging', 'mode', 0, 'youshouldn\'t', 'seethisxd')
+        self.usd = 3800.00
+        self.ganancia = 0.30
+        self.resources = 'resources/'
+
+        # Tk window
+        self.root = tkinter.Tk()
+        self.configure_root()        
 
         # initializing in tk and making main frame
         tkinter.Frame.__init__(self, self.root)
@@ -37,22 +39,30 @@ class App(tkinter.Frame):
 
         # Making Database Objects
         self.products = ProductsDB()
+        self.ventas = VentasDB(self)
+        self.users = UsersDB()
         self.configurations = None
         self.providers = None
         self.clients = None
 
         # Making main widgets
         # self.menubar = MenuBar(self)
-        self.navbar = NavBar(self, bg='#403E39')
-        self.mainview = MainView(self, bg='#00F') # this should not be visible
-        self.statusbar = StatusBar(self, bg='#DDD')
+        self.login = Login(self)
+        # self.pack(fill='both', expand=True) # TODO debuggin mode
+        # self.charge_topwidgets()
 
-        self.pack(fill='both', expand=1)
+    def charge_topwidgets(self):
+        self.navbar = NavBar(self, bg='#403E39')
+        self.mainview = MainView(self, bg='#FFF') # this should not be visible TODO change color when finish
+        self.statusbar = StatusBar(self, bg='#403E39')
+        
 
     def configure_root(self):
         """Main window configuration"""
         # TODO config icons and size and title
-        self.root.geometry('1000x500')
+        self.root.geometry('1000x540')
+        self.root.iconbitmap(self.icon)
+        self.root.title('Sistema de gestión de inventario')
 
     def configure_self(self):
         """All main container (self) configuration"""
@@ -66,6 +76,5 @@ if __name__ == "__main__":
     try:
         app = App()
         app.mainloop()
-    except:
-        raise
-        input()
+    except Exception as e:
+        messagebox.showerror(title='Error en el programa', message=e)

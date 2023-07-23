@@ -18,9 +18,26 @@ class NavBar(tkinter.Frame):
             self.logo_label.pack(side='left', padx=5, pady=5)
 
         # creating label
-        self.upper_label = tkinter.Label(self, fg="#FFF", bg="#403E39", text='Ferromotos Kenia',
-                                         font=("16",))
+        self.upper_label = tkinter.Label(self, fg='#FFF', bg='#403E39', text="FERROMOTOS KENIA\'S SYSTEM",
+                                         font='Oswald 16 bold')
         self.upper_label.pack(side='left', padx=5)
 
-    def change_tab(self, t: str):
-        self.app.mainview.set_tab(t)
+        nav_btn_style = {
+            'fg': '#403E39',
+            'bg': '#FF0',
+            'relief': 'flat',
+            'bd': 0,
+            'font': 'Roboto 12 bold'
+        }
+        self.inventory_button = tkinter.Button(self, text="FACTURACIÓN",
+                                               command=lambda: self.app.mainview.set_tab('facturation'),
+                                               **nav_btn_style)
+        self.inventory_button.pack(side='right', padx=10, pady=5)
+
+        self.inventory_button = tkinter.Button(self, text="INVENTARIO",
+                                               command=lambda: self.app.mainview.set_tab('inventory'),
+                                               **nav_btn_style)
+        self.inventory_button.pack(side='right', pady=5)
+
+    # def change_tab(self, t: str):
+    #     self.app.mainview.set_tab(t)
